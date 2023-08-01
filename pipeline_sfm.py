@@ -6,7 +6,7 @@ Email: xuanli(dot)chen(at)icloud.com
 LinkedIn: https://be.linkedin.com/in/xuanlichen
 """
 from pathlib import Path
-
+from matplotlib import pyplot as plt
 from hloc import extract_features, match_features, reconstruction, visualization, pairs_from_retrieval
 images = Path('datasets/South-Building/images/')
 
@@ -22,3 +22,10 @@ retrieval_path = extract_features.main(retrieval_conf, images, outputs)
 pairs_from_retrieval.main(retrieval_path, sfm_pairs, num_matched=5)
 feature_path = extract_features.main(feature_conf, images, outputs)
 match_path = match_features.main(matcher_conf, sfm_pairs, feature_conf['output'], outputs)
+
+model = reconstruction.main(sfm_dir, images, sfm_pairs, feature_path, match_path)
+
+visualization.visualize_sfm_2d(model, images, color_by='visibility', n=5)
+visualization.visualize_sfm_2d(model, images, color_by='track_length', n=5)
+visualization.visualize_sfm_2d(model, images, color_by='depth', n=5)
+plt.show()
