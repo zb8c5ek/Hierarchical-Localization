@@ -1,0 +1,4 @@
+## Docker:
+D:\SfM-HLoc\Docker_Run\hub /root/.cache/torch/hub/
+
+--entrypoint= --rm --shm-size 1G #--gpus all
