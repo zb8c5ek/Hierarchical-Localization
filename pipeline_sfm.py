@@ -8,9 +8,12 @@ LinkedIn: https://be.linkedin.com/in/xuanlichen
 from pathlib import Path
 from matplotlib import pyplot as plt
 from hloc import extract_features, match_features, reconstruction, visualization, pairs_from_retrieval
-images = Path('datasets/sfm_4_run_oct_9_tot_300/images/')
 
-outputs = Path('outputs/sfm_4_run_oct_9_tot_300/')
+data_stem = "sfm_4_run_oct_9_tot_300"
+
+images = Path('datasets/%s/images/' % data_stem).resolve()
+
+outputs = Path('outputs/%s/' % data_stem).resolve()
 sfm_pairs = outputs / 'pairs-netvlad.txt'
 sfm_dir = outputs / 'sfm_superpoint+superglue'
 
