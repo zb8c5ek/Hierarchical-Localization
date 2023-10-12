@@ -6,7 +6,7 @@ import numpy as np
 from hloc import extract_features, match_features, reconstruction, visualization, pairs_from_exhaustive
 from hloc.visualization import plot_images, read_image
 from hloc.utils import viz_3d
-
+import plotly.io as pio
 # # Setup
 # Here we define some output paths.
 
@@ -41,8 +41,8 @@ match_features.main(matcher_conf, sfm_pairs, features=features, matches=matches)
 model = reconstruction.main(sfm_dir, images, sfm_pairs, features, matches, image_list=references)
 fig = viz_3d.init_figure()
 viz_3d.plot_reconstruction(fig, model, color='rgba(255,0,0,0.5)', name="mapping", points_rgb=True)
-fig.show()
-
+# fig.show()
+pio.write_image(fig, outputs / "viz_3d_rec.svg")
 visualization.visualize_sfm_2d(model, images, color_by='visibility', n=2)
 
 #Localization
@@ -94,4 +94,5 @@ viz_3d.plot_camera_colmap(fig, pose, camera, color='rgba(0,255,0,0.5)', name=que
 # visualize 2D-3D correspodences
 inl_3d = np.array([model.points3D[pid].xyz for pid in np.array(log['points3D_ids'])[ret['inliers']]])
 viz_3d.plot_points(fig, inl_3d, color="lime", ps=1, name=query)
-fig.show()
+# fig.show()
+pio.write_image(fig, outputs / "viz_3d_query.svg")
