@@ -18,8 +18,10 @@ sfm_pairs = outputs / 'pairs-netvlad.txt'
 sfm_dir = outputs / 'sfm_superpoint+superglue'
 
 retrieval_conf = extract_features.confs['netvlad']
-feature_conf = extract_features.confs['superpoint_aachen']
-matcher_conf = match_features.confs['superglue']
+# feature_conf = extract_features.confs['superpoint_aachen']
+# matcher_conf = match_features.confs['superglue']
+feature_conf = extract_features.confs['disk']
+matcher_conf = match_features.confs['disk+lightglue']
 
 retrieval_path = extract_features.main(retrieval_conf, images, outputs)
 pairs_from_retrieval.main(retrieval_path, sfm_pairs, num_matched=5)
