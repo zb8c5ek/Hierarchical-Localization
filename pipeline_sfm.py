@@ -11,7 +11,7 @@ from hloc import extract_features, match_features, reconstruction, visualization
 
 data_stem = "sfm_4_run_oct_9_tot_300"
 
-images = Path('datasets/%s/images/' % data_stem).resolve()
+images = Path('datasets/%s/mapping/' % data_stem).resolve()
 
 outputs = Path('outputs/%s/' % data_stem).resolve()
 sfm_pairs = outputs / 'pairs-netvlad.txt'
