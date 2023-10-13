@@ -11,6 +11,9 @@ if __name__ == '__main__':
 
     pycolmap.extract_features(database_path, image_dir)
     pycolmap.match_exhaustive(database_path)
+
+    # Here The Data Base Codes Can Be Plugged in So that To Add Matches
+
     maps = pycolmap.incremental_mapping(database_path, image_dir, output_path)
     maps[0].write(output_path)
     # dense reconstruction
