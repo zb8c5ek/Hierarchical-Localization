@@ -10,11 +10,10 @@ import plotly.io as pio
 # # Setup
 # Here we define some output paths.
 
-dp_all_images = Path('/opt/datasets/sfm_4_run_oct_9').resolve()
-dp_selected_images = Path('datasets/rec_sfm_4_run_oct_9_mapping_1000').resolve()
-dp_process_and_outputs = Path('outputs/demo_sfm_4_run_oct_9_tot_300/').resolve()
-if dp_process_and_outputs.exists():
-    shutil.rmtree(dp_process_and_outputs)
+dp_all_images = Path('datasets/sfm_4_run_oct_9_tot_300/mapping').resolve()
+dp_selected_images = Path('datasets/rec_sfm_4_run_oct_9_50_from_300').resolve()
+num_mapping = 50
+num_query = 10
 # ===============================================
 
 # Partition all Images into Mapping and Query
@@ -23,8 +22,7 @@ dp_mapping.mkdir(parents=True, exist_ok=True)
 dp_query = dp_selected_images / 'query'
 dp_query.mkdir(parents=True, exist_ok=True)
 fps_all_images = [fp for fp in dp_all_images.glob('*.png') if fp.stem[0] not in ['_', '.']]
-num_mapping = 1000
-num_query = 100
+
 # Random Sample Mapping and Query
 fps_mapping = random.sample(fps_all_images, num_mapping)
 fps_query = random.sample([fp for fp in fps_all_images if fp not in fps_mapping], num_query)
@@ -33,4 +31,3 @@ for fp in tqdm.tqdm(fps_mapping):
     shutil.copy(fp, dp_mapping / fp.name)
 for fp in tqdm.tqdm(fps_query):
     shutil.copy(fp, dp_query / fp.name)
-# ===============================================
