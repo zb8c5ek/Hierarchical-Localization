@@ -11,9 +11,9 @@ import plotly.io as pio
 # Here we define some output paths.
 
 dp_all_images = Path('datasets/sfm_4_run_oct_9_tot_300/mapping').resolve()
-dp_selected_images = Path('datasets/rec_sfm_4_run_oct_9_50_from_300').resolve()
-num_mapping = 50
-num_query = 10
+dp_selected_images = Path('datasets/rec_sfm_4_run_oct_9_m60-q20_from_300').resolve()
+num_mapping = 60
+num_query = 20
 # ===============================================
 
 # Partition all Images into Mapping and Query
