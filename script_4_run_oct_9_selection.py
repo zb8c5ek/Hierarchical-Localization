@@ -10,10 +10,13 @@ import plotly.io as pio
 # # Setup
 # Here we define some output paths.
 
+num_mapping = 150
+num_query = 80
+
 dp_all_images = Path('datasets/sfm_4_run_oct_9_tot_300/mapping').resolve()
-dp_selected_images = Path('datasets/rec_sfm_4_run_oct_9_m60-q20_from_300').resolve()
-num_mapping = 60
-num_query = 20
+dp_selected_images = Path('datasets/rec_sfm_4_run_oct_9_m%04d-q%04d_from_300' % (num_mapping, num_query)).resolve()
+
+
 # ===============================================
 
 # Partition all Images into Mapping and Query
@@ -31,3 +34,7 @@ for fp in tqdm.tqdm(fps_mapping):
     shutil.copy(fp, dp_mapping / fp.name)
 for fp in tqdm.tqdm(fps_query):
     shutil.copy(fp, dp_query / fp.name)
+
+print("Mapping and Query Images are Copied into Corresponding Folders:")
+print("Mapping: ", dp_mapping)
+print("Query: ", dp_query)
