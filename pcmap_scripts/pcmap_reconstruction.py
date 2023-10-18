@@ -9,7 +9,6 @@ if __name__ == '__main__':
     image_dir = Path("datasets/rec_sfm_4_run_oct_9_m0150-q0080_from_300/mapping").resolve()
 
     output_path.mkdir(exist_ok=True, parents=True)
-    mvs_path = output_path / "mvs"
     database_path = output_path / "database.db"
 
     # TODO: try initialize the database with explicit camera parameters, to see the effect. both the images and cameras
@@ -51,6 +50,7 @@ if __name__ == '__main__':
     print(colored(f"Time Mapping: {time_mapping}", 'blue'))
     print(colored(f"Time Output: {time_output}", 'magenta'))
     # dense reconstruction
+    mvs_path = output_path / "mvs"
     pycolmap.undistort_images(mvs_path, output_path, image_dir)
-    pycolmap.patch_match_stereo(mvs_path)  # requires compilation with CUDA
-    pycolmap.stereo_fusion(mvs_path / "dense.ply", mvs_path)
+    # pycolmap.patch_match_stereo(mvs_path)  # requires compilation with CUDA
+    # pycolmap.stereo_fusion(mvs_path / "dense.ply", mvs_path)
