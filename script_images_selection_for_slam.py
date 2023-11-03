@@ -1,3 +1,9 @@
+__author__ = 'Xuan-Li CHEN'
+"""
+Xuan-Li Chen
+Domain: Computer Vision, Machine Learning
+Email: chen_alphonse_xuanli(at)outlook.com
+"""
 import tqdm
 import shutil
 from pathlib import Path
@@ -7,13 +13,13 @@ num_mapping = 200
 num_query = 100
 
 dp_all_images = Path('datasets/sfm_4_run_oct_9_tot_300/mapping').resolve()
-dp_selected_images = Path('datasets/rec_sfm_4_run_oct_9_m%04d-q%04d_from_300' % (num_mapping, num_query)).resolve()
+dp_selected_images = Path('/opt/data/rec_sfm_4_run_oct_9_m%04d-q%04d_from_300' % (num_mapping, num_query)).resolve()
 
 
 # ===============================================
 
 # Partition all Images into Mapping and Query
-dp_mapping = dp_selected_images / 'mapping'
+dp_mapping = dp_selected_images / 'cam0' / 'data'
 dp_mapping.mkdir(parents=True, exist_ok=True)
 dp_query = dp_selected_images / 'query'
 dp_query.mkdir(parents=True, exist_ok=True)
